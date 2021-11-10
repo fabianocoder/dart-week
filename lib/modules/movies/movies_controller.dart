@@ -22,6 +22,8 @@ class MoviesController extends GetxController with MessagesMixin {
     super.onReady();
     try {
       final genres = await _genresService.getGenres();
+      print("teste");
+      print(genres);
       this.genres.assignAll(genres);
     } catch (e) {
       _message(
