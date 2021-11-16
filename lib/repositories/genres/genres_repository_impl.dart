@@ -10,16 +10,18 @@ class GenresRepositoryImpl implements GenresRepository {
 
   @override
   Future<List<GenreModel>> getGenres() async {
-    print("pegando api token");
-
     final result = await _restClient.get<List<GenreModel>>('genre/movie/list',
-        query: {'api_key': RemoteConfig.instance.getString('api_token')},
-        decoder: (data) {
+        query: {
+          'api_key': RemoteConfig.instance.getString('api_token'),
+          'language': 'pt-Br'
+        }, decoder: (data) {
       print("resultado");
       print(data['genres']);
       final resultData = data['genres'];
       if (resultData != null) {
-        return resultData.map<GenreModel>((g) => GenreModel.fromMap(g)).to;
+        return resultData
+            .map<GenreModel>((g) => GenreModel.fromMap(g))
+            .toList();
       }
       return <GenreModel>[];
     });
@@ -27,7 +29,7 @@ class GenresRepositoryImpl implements GenresRepository {
       print(result.statusText);
       throw Exception("Erro ao buscar Genres");
     }
-    print(result.statusCode);
+    // print(result.statusCode);
     return result.body ?? <GenreModel>[];
   }
 }

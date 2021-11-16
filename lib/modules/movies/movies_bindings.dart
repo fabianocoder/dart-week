@@ -20,6 +20,9 @@ class MovieBindings implements Bindings {
       ),
     );
 
-    Get.lazyPut(() => MoviesController(genresService: Get.find()));
+    Get.lazyPut(() => MoviesController(
+          genresService: Get.find(),
+          moviesService: Get.find(),
+        ));
   }
 }
