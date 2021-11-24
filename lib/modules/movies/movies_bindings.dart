@@ -4,6 +4,7 @@ import 'package:dartweek/repositories/genres/genres_repository.dart';
 import 'package:dartweek/repositories/genres/genres_repository_impl.dart';
 import 'package:dartweek/services/genres/genres_service_impl.dart';
 import 'package:dartweek/services/genres/genres_service.dart';
+import 'package:dartweek/services/movies/movies_service.dart';
 import 'package:get/get.dart';
 
 class MovieBindings implements Bindings {
@@ -20,9 +21,12 @@ class MovieBindings implements Bindings {
       ),
     );
 
-    Get.lazyPut(() => MoviesController(
-          genresService: Get.find(),
-          moviesService: Get.find(),
-        ));
+    Get.lazyPut(
+      () => MoviesController(
+        genresService: Get.find(),
+        moviesService: Get.find(),
+        authService: Get.find(),
+      ),
+    );
   }
 }

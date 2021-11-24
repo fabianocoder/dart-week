@@ -1,5 +1,4 @@
 import 'package:dartweek/models/movie_detail_model.dart';
-import 'package:dartweek/models/movie_model.dart';
 import 'package:dartweek/modules/movie_detail/widget/movie_detail_content/movie_cast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,9 +15,13 @@ class MovieDetailContentMainCast extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Divider(color: Colors.grey),
+        Divider(
+          color: Colors.grey,
+        ),
         Obx(() {
           return ExpansionPanelList(
+            elevation: 0,
+            expandedHeaderPadding: EdgeInsets.zero,
             expansionCallback: (panelIndex, isExpanded) {
               showPanel.toggle();
             },

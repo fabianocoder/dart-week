@@ -1,5 +1,4 @@
 import 'package:dartweek/models/movie_detail_model.dart';
-import 'package:dartweek/modules/movie_detail/widget/movie_detail_content/movie_detail_content.dart';
 import 'package:flutter/widgets.dart';
 
 class MovieDetailContentProductionCompanies extends StatelessWidget {

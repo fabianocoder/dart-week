@@ -5,6 +5,7 @@ class MovieModel {
   final String title;
   final String release;
   final String posterPath;
+  final bool favorite;
   final List<int> genres;
   MovieModel({
     required this.id,
@@ -12,6 +13,7 @@ class MovieModel {
     required this.release,
     required this.posterPath,
     required this.genres,
+    required this.favorite,
   });
 
   Map<String, dynamic> toMap() {
@@ -21,6 +23,7 @@ class MovieModel {
       'release': release,
       'posterPath': posterPath,
       'genres': genres,
+      'favorite': favorite,
     };
   }
 
@@ -31,6 +34,7 @@ class MovieModel {
       release: map['release_date'],
       posterPath: map['poster_path'],
       genres: List<int>.from(map['genre_ids']),
+      favorite: map['favorite'] ?? false,
     );
   }
 
@@ -38,4 +42,22 @@ class MovieModel {
 
   factory MovieModel.fromJson(String source) =>
       MovieModel.fromMap(json.decode(source));
+
+  MovieModel copyWith({
+    int? id,
+    String? title,
+    String? release,
+    String? posterPath,
+    bool? favorite,
+    List<int>? genres,
+  }) {
+    return MovieModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      release: release ?? this.release,
+      posterPath: posterPath ?? this.posterPath,
+      favorite: favorite ?? this.favorite,
+      genres: genres ?? this.genres,
+    );
+  }
 }

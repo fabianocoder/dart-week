@@ -7,7 +7,12 @@ import 'package:intl/intl.dart';
 class MovieCard extends StatelessWidget {
   final dateFormat = DateFormat('y');
   final MovieModel movie;
-  MovieCard({Key? key, required this.movie}) : super(key: key);
+  final VoidCallback favoriteCallback;
+  MovieCard({
+    Key? key,
+    required this.movie,
+    required this.favoriteCallback,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +76,12 @@ class MovieCard extends StatelessWidget {
                   height: 30,
                   child: IconButton(
                     iconSize: 13,
-                    onPressed: () {},
+                    onPressed: favoriteCallback,
                     icon: Icon(
-                      FilmesAppIcons.heart,
-                      color: Colors.grey,
+                      movie.favorite
+                          ? FilmesAppIcons.heart
+                          : FilmesAppIcons.heart_empty,
+                      color: movie.favorite ? Colors.red : Colors.grey,
                     ),
                   ),
                 ),
